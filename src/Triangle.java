@@ -1,21 +1,19 @@
-class Rectangle extends Shape {
+public class Triangle extends Shape {
     private Point topLeft;
     private int sideA, sideB;
     public static int counter = 0;
-    public int counterforobject = 0;
 
-    public static String class_name = "Rectangle";
+    public static String class_name = "Triangle";
 
-    public Rectangle(Point topLeft, int sideA, int sideB) {
-        super(topLeft);
+    public Triangle(Point topLeft, int sideA, int sideB) {
+        super(topLeft); 
         this.topLeft = topLeft;
         setSideA(sideA);
         setSideB(sideB);
         counter++;
-        counterforobject++;
     }
 
-    public Rectangle(Point topLeft, int sideA) {
+    public Triangle(Point topLeft, int sideA) {
         this(topLeft, sideA, sideA);
     }
 
@@ -32,8 +30,8 @@ class Rectangle extends Shape {
     }
 
     public void setSideA(int sideA) {
-        if (sideA < 0) {
-            throw new IllegalArgumentException("side A cannot be negative");
+        if (sideA <= 0) {
+            throw new IllegalArgumentException("Side A cannot be zero or negative");
         }
         this.sideA = sideA;
     }
@@ -43,27 +41,28 @@ class Rectangle extends Shape {
     }
 
     public void setSideB(int sideB) {
-        if (sideB < 0) {
-            throw new IllegalArgumentException("side B cannot be negative");
+        if (sideB <= 0) {
+            throw new IllegalArgumentException("Side B cannot be zero or negative");
         }
         this.sideB = sideB;
     }
 
-    public int perimeter() {
-        return 2 * (sideA + sideB);
+    public double perimeter() {
+        double hypotenuse = Math.sqrt((sideA * sideA) + (sideB * sideB));
+        return sideA + sideB + hypotenuse;
     }
 
-    public int area() {
-        return sideA * sideB;
+    public double area() {
+        return (sideA * sideB) / 2.0;
     }
 
     @Override
     public String toString() {
-        return "Rectangle{" +
-                "topLeft=" + topLeft +
+        return "Triangle{" +
+                "Location=" + topLeft +
                 ", sideA=" + sideA +
                 ", sideB=" + sideB +
-                ", counterforobject=" + counterforobject +
+                ", counter=" + counter +
                 '}';
     }
 }
